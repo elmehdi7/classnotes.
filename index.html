@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Class Notes</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      header {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+      }
+
+      main {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        padding: 20px;
+      }
+
+      section {
+        width: 40%;
+        background-color: #fff;
+        padding: 20px;
+        margin: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      li {
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      li:hover {
+        transform: scale(1.05);
+      }
+
+      footer {
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #333;
+        color: white;
+      }
+
+      h2 {
+        margin-top: 0;
+      }
+
+      button {
+        display: none;
+      }
+
+      .comments-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      input[type="email"],
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      button[type="submit"] {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to Class Notes</h1>
+    </header>
+
+    <main>
+      <section>
+        <h2>Subjects</h2>
+        <ul id="subjects-list">
+          <!-- Your subjects will go here as list items -->
+        </ul>
+      </section>
+
+      <section>
+        <h2>Selected Notes</h2>
+        <div id="selected-notes">
+          <!-- Selected notes will appear here -->
+        </div>
+      </section>
+
+      <section class="comments-section">
+        <h2>Leave a Comment</h2>
+        <input type="email" id="email" placeholder="Your Email" />
+        <textarea id="comment" placeholder="Your Comment"></textarea>
+        <button type="submit" onclick="leaveComment()">Submit</button>
+      </section>
+    </main>
+
+    <footer>CREATED BY MIMOUNI</p>
+    </footer>
+
+    <script>
+      const subjects = [
+  '19th Century Novel',
+  'Classical Drama',
+  'Introduction to Poetry',
+  'Literary Movements',
+  'Postcolonial Studies',
+  'Research Project'
+];
+
+const notes = {
+  '19th Century Novel': [
+    '<a href="https://docs.google.com/document/d/1-ThlFuPkLHENOm5TPi9hx_M1nwd8lsvtNPE1aTmvzUE/edit?usp=sharing" target="_blank">Session 1 PDF</a>',
+    '<a href="https://drive.google.com/file/d/1KZQWQtBecE6l4ddrEWDaZg-R_NPqmmMN/view?usp=sharing">Session 2 PDF</a>',
+    '<a href="your_session3_pdf_link_here" target="_blank">Session 3 PDF</a>',
+    // Add other sessions here...
+  ],
+  'Classical Drama': [
+    'Session 1',
+    'Session 2',
+    'Session 3',
+    // Add other sessions here...
+  ],
+  // Repeat for other subjects...
+
+        "Classical Drama": [
+          "Session 1",
+          "Session 2",
+          "Session 3",
+          // Add other sessions here...
+        ],
+        // Repeat for other subjects...
+      };
+
+      function displaySubjects() {
+        const subjectsList = document.getElementById("subjects-list");
+
+        subjects.forEach((subject) => {
+          const listItem = document.createElement("li");
+          listItem.textContent = subject;
+          listItem.addEventListener("click", () => displayNotes(subject));
+          subjectsList.appendChild(listItem);
+        });
+      }
+
+      function displayNotes(subject) {
+        const selectedNotes = document.getElementById("selected-notes");
+        selectedNotes.innerHTML = "";
+
+        notes[subject].forEach((note) => {
+          const sessionLink = document.createElement("a");
+          sessionLink.textContent = note;
+          sessionLink.setAttribute(
+            "href",
+            `path_to_your_pdf/${subject}_${note}.pdf`
+          );
+          sessionLink.setAttribute("target", "_blank"); // Opens in a new tab
+          sessionLink.setAttribute("download", ""); // Enables download attribute
+
+          const lineBreak = document.createElement("br");
+
+          selectedNotes.appendChild(sessionLink);
+          selectedNotes.appendChild(lineBreak);
+        });
+      }
+
+      function leaveComment() {
+        const email = document.getElementById("email").value;
+        const comment = document.getElementById("comment").value;
+        console.log(`Email: ${email}, Comment: ${comment}`);
+        alert("Comment submitted!");
+      }
+
+      window.onload = displaySubjects;
+    </script>
+  </body>
+</html>
